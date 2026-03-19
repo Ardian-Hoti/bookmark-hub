@@ -6,7 +6,7 @@ It focuses on making bookmarks easier to browse, search, and manage without rely
 
 ## What it does
 
-- Shows your bookmarks in a clean new tab page
+- Opens a dedicated tab with your bookmarks when clicking the extension icon
 - Lets you organize bookmarks using folders, tags, and categories
 - Provides fast search (title, URL, tags)
 - Displays recently added bookmarks
@@ -33,7 +33,7 @@ This project is a lightweight alternative that:
 
 ## Usage
 
-- Open a new tab to access BookmarkHub
+- Click the extension icon to open BookmarkHub in a new tab
 - Use the sidebar to filter bookmarks
 - Use the search bar to quickly find anything
 - Click a bookmark to view or edit its details
