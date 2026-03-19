@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookmarkHub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- App Shell -->
+  <div id="app">
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>BookmarkHub</span>
+        </div>
+        <button id="btn-collapse-sidebar" class="icon-btn" title="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Quick Filters -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Library</div>
+        <button class="nav-item active" data-filter="all">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+          <span>All Bookmarks</span>
+          <span class="nav-count" id="count-all">0</span>
+        </button>
+        <button class="nav-item" data-filter="recent">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Recently Added</span>
+        </button>
+        <button class="nav-item" data-filter="untagged">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke="currentColor" stroke-width="2"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>
+          <span>Untagged</span>
+        </button>
+      </nav>
+
+      <!-- Tags -->
+      <div class="sidebar-section">
+        <div class="nav-section-label">
+          <span>Tags</span>
+          <button class="icon-btn-sm" id="btn-add-tag" title="Manage Tags">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div id="tags-list" class="tags-list-sidebar"></div>
+      </div>
+
+      <!-- Chrome Folders -->
+      <div class="sidebar-section">
+        <div class="nav-section-label">
+          <span>Folders</span>
+        </div>
+        <div id="folders-tree" class="folders-tree"></div>
+      </div>
+
+      <!-- Categories -->
+      <div class="sidebar-section">
+        <div class="nav-section-label">
+          <span>Categories</span>
+          <button class="icon-btn-sm" id="btn-add-category" title="Add Category">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div id="categories-list" class="categories-list"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="nav-item" id="btn-settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main">
+
+      <!-- Top Bar -->
+      <header id="topbar">
+        <div class="topbar-left">
+          <h1 id="page-title">All Bookmarks</h1>
+          <span id="page-subtitle" class="page-subtitle"></span>
+        </div>
+        <div class="topbar-center">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="text" id="search-input" placeholder="Search bookmarks… (/ to focus)" autocomplete="off" spellcheck="false" />
+            <kbd class="search-shortcut" id="search-kbd">/</kbd>
+            <button class="search-clear hidden" id="btn-clear-search">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="view-toggle">
+            <button class="view-btn active" id="btn-view-grid" title="Grid View">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <button class="view-btn" id="btn-view-list" title="List View">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <button class="btn-primary" id="btn-add-bookmark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add Bookmark
+          </button>
+        </div>
+      </header>
+
+      <!-- Sort / Filter Bar -->
+      <div id="filter-bar">
+        <div class="filter-left">
+          <div class="active-filters" id="active-filters"></div>
+        </div>
+        <div class="filter-right">
+          <label class="sort-label">Sort:</label>
+          <select id="sort-select" class="sort-select">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="alpha-asc">A → Z</option>
+            <option value="alpha-desc">Z → A</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Bookmarks Grid/List -->
+      <div id="bookmarks-container">
+        <div id="bookmarks-grid" class="bookmarks-grid"></div>
+        <div id="empty-state" class="empty-state hidden">
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 id="empty-title">No bookmarks found</h3>
+          <p id="empty-desc">Try a different search or filter.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========== MODALS ========== -->
+
+  <!-- Add/Edit Bookmark Modal -->
+  <div id="modal-bookmark" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-bookmark-title">Add Bookmark</h2>
+        <button class="icon-btn modal-close" data-modal="modal-bookmark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="bm-url">URL</label>
+          <input type="url" id="bm-url" placeholder="https://example.com" />
+        </div>
+        <div class="form-group">
+          <label for="bm-title">Title</label>
+          <input type="text" id="bm-title" placeholder="Bookmark title" />
+        </div>
+        <div class="form-group">
+          <label for="bm-folder">Folder</label>
+          <select id="bm-folder"></select>
+        </div>
+        <div class="form-group">
+          <label>Tags</label>
+          <div class="tag-input-wrapper">
+            <div id="bm-tags-display" class="tag-chips"></div>
+            <input type="text" id="bm-tag-input" placeholder="Add tag…" autocomplete="off" />
+          </div>
+          <div id="tag-suggestions" class="tag-suggestions hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="bm-category">Category</label>
+          <select id="bm-category">
+            <option value="">None</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bm-notes">Notes</label>
+          <textarea id="bm-notes" placeholder="Add personal notes…" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary modal-close" data-modal="modal-bookmark">Cancel</button>
+        <button class="btn-primary" id="btn-save-bookmark">Save Bookmark</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookmark Detail / Quick Edit Modal -->
+  <div id="modal-detail" class="modal-backdrop hidden">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <div class="detail-header-meta">
+          <img id="detail-favicon" class="detail-favicon" src="" alt="" />
+          <div>
+            <h2 id="detail-title">Bookmark Title</h2>
+            <a id="detail-url" class="detail-url" href="#" target="_blank"></a>
+          </div>
+        </div>
+        <button class="icon-btn modal-close" data-modal="modal-detail">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="form-group">
+            <label>Tags</label>
+            <div class="tag-input-wrapper">
+              <div id="detail-tags-display" class="tag-chips"></div>
+              <input type="text" id="detail-tag-input" placeholder="Add tag…" autocomplete="off" />
+            </div>
+            <div id="detail-tag-suggestions" class="tag-suggestions hidden"></div>
+          </div>
+          <div class="form-group">
+            <label for="detail-category">Category</label>
+            <select id="detail-category">
+              <option value="">None</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="detail-notes">Notes</label>
+            <textarea id="detail-notes" placeholder="Add personal notes…" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-danger" id="btn-delete-bookmark">Delete</button>
+        <div style="flex:1"></div>
+        <button class="btn-secondary modal-close" data-modal="modal-detail">Cancel</button>
+        <button class="btn-primary" id="btn-save-detail">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="modal-settings" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="icon-btn modal-close" data-modal="modal-settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <h3>Appearance</h3>
+          <div class="setting-row">
+            <label>Theme</label>
+            <div class="theme-options">
+              <button class="theme-chip active" data-theme="dark">Dark</button>
+              <button class="theme-chip" data-theme="light">Light</button>
+              <button class="theme-chip" data-theme="midnight">Midnight</button>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>Accent Color</label>
+            <div class="accent-options">
+              <button class="accent-chip active" data-accent="violet" style="background:#7c3aed"></button>
+              <button class="accent-chip" data-accent="blue" style="background:#2563eb"></button>
+              <button class="accent-chip" data-accent="emerald" style="background:#059669"></button>
+              <button class="accent-chip" data-accent="rose" style="background:#e11d48"></button>
+              <button class="accent-chip" data-accent="amber" style="background:#d97706"></button>
+              <button class="accent-chip" data-accent="cyan" style="background:#0891b2"></button>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h3>Categories</h3>
+          <div id="settings-categories"></div>
+          <div class="add-category-row">
+            <input type="text" id="new-category-name" placeholder="Category name" />
+            <input type="color" id="new-category-color" value="#7c3aed" />
+            <button class="btn-primary btn-sm" id="btn-create-category">Add</button>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h3>Data</h3>
+          <div class="setting-row">
+            <label>Export bookmarks metadata</label>
+            <button class="btn-secondary btn-sm" id="btn-export">Export JSON</button>
+          </div>
+          <div class="setting-row">
+            <label>Import metadata</label>
+            <button class="btn-secondary btn-sm" id="btn-import">Import JSON</button>
+            <input type="file" id="import-file" accept=".json" class="hidden" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div id="context-menu" class="context-menu hidden">
+    <button class="ctx-item" id="ctx-open">Open</button>
+    <button class="ctx-item" id="ctx-open-new">Open in New Tab</button>
+    <div class="ctx-divider"></div>
+    <button class="ctx-item" id="ctx-edit">Edit / Tag</button>
+    <button class="ctx-item" id="ctx-copy">Copy URL</button>
+    <div class="ctx-divider"></div>
+    <button class="ctx-item ctx-danger" id="ctx-delete">Delete</button>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container"></div>
+
+  <script src="newtab.js"></script>
+</body>
+</html>
